@@ -1,0 +1,60 @@
+﻿<Window x:Class="CSGO_Message_Helper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSGO_Message_Helper"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Width="250" Grid.Column="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <CheckBox x:Name="IsDead" Content="Dead" Margin="5" VerticalAlignment="Center"/>
+                <CheckBox x:Name="IsTeamMessage" Content="Command chat" Margin="5" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <RadioButton x:Name="CTTeam" Margin="7" Content="CT" IsChecked="True"/>
+                <TextBlock VerticalAlignment="Center" Text="OR"/>
+                <RadioButton Margin="7" Content="T"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <RadioButton Margin="7" Content="Eng" IsChecked="True" Checked="EngLang_Checked"/>
+                <TextBlock VerticalAlignment="Center" Text="OR"/>
+                <RadioButton Margin="7" Content="Rus" Checked="RusLang_Checked"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <TextBlock VerticalAlignment="Center" Text="Color:" Margin="7"/>
+                <ComboBox x:Name="ColorsCB" Width="150" Margin="7"
+                    ItemsSource="{Binding PlayerColorsCollection}"
+                    DisplayMemberPath="ColorName"
+                    SelectedValuePath="CSGOColor"
+                          SelectedIndex="0"/>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Нік жертви" HorizontalAlignment="Right" Margin="7"/>
+                <TextBlock  Text="Повідомлення" HorizontalAlignment="Right" Margin="7"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBox x:Name="VictimNick" Margin="7"/>
+                <TextBox x:Name="Message" TextChanged="VictimNick_TextChanged" Margin="7"/>
+                <Button Content="Generate" Margin="7" HorizontalAlignment="Center" Width="100" Height="25" Click="GenerateResult"/>
+            </StackPanel>
+            <TextBlock x:Name="ResultMessage" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontFamily="/CSGO Message Helper;component/Fonts/#Stratum2 Regular" FontSize="17" TextWrapping="Wrap" Margin="7" Background="#FF232121"/>
+        </Grid>
+    </Grid>
+</Window>
