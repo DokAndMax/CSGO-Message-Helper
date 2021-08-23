@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CSGO_Message_Helper
 {
@@ -111,10 +104,15 @@ namespace CSGO_Message_Helper
         }
         public static string ReverseString(string myStr)
         {
-            char[] myArr = myStr.ToCharArray();
-            Array.Reverse(myArr);
-            return new String(myArr);
+            TextElementEnumerator enumerator =
+                StringInfo.GetTextElementEnumerator(myStr);
 
+            List<string> elements = new List<string>();
+            while (enumerator.MoveNext())
+                elements.Add(enumerator.GetTextElement());
+
+            elements.Reverse();
+            return string.Concat(elements);
         }
         public SolidColorBrush BrushFromHex(string hexColorString)
         {
