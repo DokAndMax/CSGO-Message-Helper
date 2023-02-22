@@ -1,60 +1,152 @@
-﻿<Window x:Class="CSGO_Message_Helper.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CSGO_Message_Helper"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+﻿<Window
+    x:Class="CSGO_Message_Helper.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CSGO_Message_Helper"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Style TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Orientation" Value="Horizontal" />
+        </Style>
+        <Style x:Key="ControlsPanel" TargetType="{x:Type StackPanel}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <StackPanel Width="250" Grid.Column="0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <CheckBox x:Name="IsDead" Content="Dead" Margin="5" VerticalAlignment="Center"/>
-                <CheckBox x:Name="IsTeamMessage" Content="Command chat" Margin="5" VerticalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <RadioButton x:Name="CTTeam" Margin="7" Content="CT" IsChecked="True"/>
-                <TextBlock VerticalAlignment="Center" Text="OR"/>
-                <RadioButton Margin="7" Content="T"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <RadioButton Margin="7" Content="Eng" IsChecked="True" Checked="EngLang_Checked"/>
-                <TextBlock VerticalAlignment="Center" Text="OR"/>
-                <RadioButton Margin="7" Content="Rus" Checked="RusLang_Checked"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.35*" />
+                <RowDefinition Height="0.65*" />
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Width" Value="100" />
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="TextAlignment" Value="Right" />
+                </Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Width" Value="150" />
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+            </Grid.Resources>
+            <StackPanel Grid.Row="0" Style="{StaticResource ControlsPanel}">
+                <StackPanel>
+                    <TextBlock Text="Нік жертви" />
+                    <TextBox x:Name="VictimNick" />
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Повідомлення" />
+                    <TextBox x:Name="Message" TextChanged="VictimNick_TextChanged" />
+                </StackPanel>
+                <Button
+                    Width="100"
+                    Height="25"
+                    Margin="5"
+                    Click="GenerateResult"
+                    Content="Generate" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <TextBlock VerticalAlignment="Center" Text="Color:" Margin="7"/>
-                <ComboBox x:Name="ColorsCB" Width="150" Margin="7"
-                    ItemsSource="{Binding PlayerColorsCollection}"
-                    DisplayMemberPath="ColorName"
-                    SelectedValuePath="CSGOColor"
-                          SelectedIndex="0"/>
+            <StackPanel Grid.Row="1" Style="{StaticResource ControlsPanel}">
+                <StackPanel>
+                    <CheckBox
+                        x:Name="IsDead"
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        Content="Dead" />
+                    <CheckBox
+                        x:Name="IsTeamMessage"
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        Content="Command chat" />
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock
+                        Margin="7"
+                        VerticalAlignment="Center"
+                        Text="Faction:" />
+                    <ComboBox
+                        Width="150"
+                        Margin="7"
+                        DisplayMemberPath="ColorName"
+                        ItemsSource="{Binding PlayerColorsCollection}"
+                        SelectedIndex="0"
+                        SelectedValuePath="CSGOColor" />
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock
+                        Margin="7"
+                        VerticalAlignment="Center"
+                        Text="Color:" />
+                    <ComboBox
+                        x:Name="ColorsCB"
+                        Width="150"
+                        Margin="7"
+                        DisplayMemberPath="ColorName"
+                        ItemsSource="{Binding PlayerColorsCollection}"
+                        SelectedIndex="0"
+                        SelectedValuePath="CSGOColor" />
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock
+                        Margin="7"
+                        VerticalAlignment="Center"
+                        Text="Language:" />
+                    <ComboBox
+                        Width="150"
+                        Margin="7"
+                        DisplayMemberPath="ColorName"
+                        ItemsSource="{Binding PlayerColorsCollection}"
+                        SelectedIndex="0"
+                        SelectedValuePath="CSGOColor" />
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock
+                        Margin="7"
+                        VerticalAlignment="Center"
+                        Text="Radio message:" />
+                    <ComboBox
+                        Width="150"
+                        Margin="7"
+                        DisplayMemberPath="ColorName"
+                        ItemsSource="{Binding PlayerColorsCollection}"
+                        SelectedIndex="0"
+                        SelectedValuePath="CSGOColor" />
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock
+                        Margin="7"
+                        VerticalAlignment="Center"
+                        Text="Location:" />
+                    <ComboBox
+                        Width="150"
+                        Margin="7"
+                        DisplayMemberPath="ColorName"
+                        ItemsSource="{Binding PlayerColorsCollection}"
+                        SelectedIndex="0"
+                        SelectedValuePath="CSGOColor" />
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
         <Grid Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Column="0">
-                <TextBlock Text="Нік жертви" HorizontalAlignment="Right" Margin="7"/>
-                <TextBlock  Text="Повідомлення" HorizontalAlignment="Right" Margin="7"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <TextBox x:Name="VictimNick" Margin="7"/>
-                <TextBox x:Name="Message" TextChanged="VictimNick_TextChanged" Margin="7"/>
-                <Button Content="Generate" Margin="7" HorizontalAlignment="Center" Width="100" Height="25" Click="GenerateResult"/>
-            </StackPanel>
-            <TextBlock x:Name="ResultMessage" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontFamily="/CSGO Message Helper;component/Fonts/#Stratum2 Regular" FontSize="17" TextWrapping="Wrap" Margin="7" Background="#FF232121"/>
+            <TextBlock
+                x:Name="ResultMessage"
+                Grid.Row="1"
+                Margin="7"
+                Background="#FF232121"
+                FontFamily="/CSGO Message Helper;component/Fonts/#Stratum2 Regular"
+                FontSize="17"
+                TextWrapping="Wrap" />
         </Grid>
     </Grid>
 </Window>

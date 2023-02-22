@@ -40,7 +40,7 @@ namespace CSGO_Message_Helper
             ResultMessage.Inlines.Add(new Run("● ") { Foreground = BrushFromHex("#00b562") });
             ResultMessage.Inlines.Add(new Run("(RADIO): " + selectedlang.radioMessage + "\n") { Foreground = BrushFromHex(TeamColor) });
             ResultMessage.Inlines.Add(new Run("● ") { Foreground = BrushFromHex(((PlayerColors)ColorsCB.SelectedItem).ProgrammTextColor) });
-            MessageResult += "playerradio radio.cheer \"" + selectedlang.radioMessage + "\u2029\x202E"; // початок команди, додоаємо символ RIGHT-TO-LEFT 
+            MessageResult += $"playerchatwheel CW.NeedDecoy \" {selectedlang.radioMessage} \u2029\x202E"; // початок команди, додоаємо символ RIGHT-TO-LEFT 
 
             ReversedString += "●" + ((PlayerColors)ColorsCB.SelectedItem).CSGOColor + " "; // додаємо в реверсивну строчку маркер кольору гравця
             if (IsDead.IsChecked == true)
