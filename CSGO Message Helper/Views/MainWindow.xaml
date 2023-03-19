@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CSGO_Message_Helper"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
+    Title="CSGO Message Helper"
     Width="800"
     Height="450"
     mc:Ignorable="d">
@@ -43,104 +43,99 @@
             <StackPanel Grid.Row="0" Style="{StaticResource ControlsPanel}">
                 <StackPanel>
                     <TextBlock Text="Нік жертви" />
-                    <TextBox x:Name="VictimNick" />
+                    <TextBox Text="{Binding Nickname}" />
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Повідомлення" />
-                    <TextBox x:Name="Message" TextChanged="VictimNick_TextChanged" />
+                    <TextBox Text="{Binding Message}" />
                 </StackPanel>
                 <Button
                     Width="100"
                     Height="25"
                     Margin="5"
-                    Click="GenerateResult"
+                    Command="{Binding GenerateMessageCommand}"
                     Content="Generate" />
             </StackPanel>
 
             <StackPanel Grid.Row="1" Style="{StaticResource ControlsPanel}">
                 <StackPanel>
                     <CheckBox
-                        x:Name="IsDead"
                         Margin="5"
                         VerticalAlignment="Center"
-                        Content="Dead" />
+                        Content="Dead"
+                        IsChecked="{Binding IsDead}" />
                     <CheckBox
-                        x:Name="IsTeamMessage"
                         Margin="5"
                         VerticalAlignment="Center"
-                        Content="Command chat" />
+                        Content="Location"
+                        IsChecked="{Binding IsLocation}" />
                 </StackPanel>
                 <StackPanel>
-                    <TextBlock
-                        Margin="7"
+                    <RadioButton
+                        Margin="5"
                         VerticalAlignment="Center"
-                        Text="Faction:" />
-                    <ComboBox
-                        Width="150"
-                        Margin="7"
-                        DisplayMemberPath="ColorName"
-                        ItemsSource="{Binding PlayerColorsCollection}"
-                        SelectedIndex="0"
-                        SelectedValuePath="CSGOColor" />
+                        Content="Counter-Terrorists"
+                        IsChecked="{Binding IsCounterTerrorists}" />
+                    <RadioButton
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        Content="Terrorists"
+                        IsChecked="{Binding IsTerrorists}" />
+                    <RadioButton
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        Content="All"
+                        IsChecked="{Binding IsAll}" />
                 </StackPanel>
                 <StackPanel>
                     <TextBlock
-                        Margin="7"
+                        Margin="5"
                         VerticalAlignment="Center"
                         Text="Color:" />
                     <ComboBox
-                        x:Name="ColorsCB"
                         Width="150"
-                        Margin="7"
-                        DisplayMemberPath="ColorName"
-                        ItemsSource="{Binding PlayerColorsCollection}"
-                        SelectedIndex="0"
-                        SelectedValuePath="CSGOColor" />
+                        Margin="5"
+                        DisplayMemberPath="Name"
+                        ItemsSource="{Binding Colors}"
+                        SelectedValue="{Binding Color}" />
                 </StackPanel>
                 <StackPanel>
                     <TextBlock
-                        Margin="7"
+                        Margin="5"
                         VerticalAlignment="Center"
                         Text="Language:" />
                     <ComboBox
                         Width="150"
-                        Margin="7"
-                        DisplayMemberPath="ColorName"
-                        ItemsSource="{Binding PlayerColorsCollection}"
-                        SelectedIndex="0"
-                        SelectedValuePath="CSGOColor" />
+                        Margin="5"
+                        ItemsSource="{Binding Languages}"
+                        SelectedValue="{Binding Language}" />
                 </StackPanel>
                 <StackPanel>
                     <TextBlock
-                        Margin="7"
+                        Margin="5"
                         VerticalAlignment="Center"
                         Text="Radio message:" />
                     <ComboBox
                         Width="150"
-                        Margin="7"
-                        DisplayMemberPath="ColorName"
-                        ItemsSource="{Binding PlayerColorsCollection}"
-                        SelectedIndex="0"
-                        SelectedValuePath="CSGOColor" />
+                        Margin="5"
+                        ItemsSource="{Binding RadioMessageTokens}"
+                        SelectedValue="{Binding RadioMessageToken}" />
                 </StackPanel>
                 <StackPanel>
                     <TextBlock
-                        Margin="7"
+                        Margin="5"
                         VerticalAlignment="Center"
                         Text="Location:" />
                     <ComboBox
                         Width="150"
-                        Margin="7"
-                        DisplayMemberPath="ColorName"
-                        ItemsSource="{Binding PlayerColorsCollection}"
-                        SelectedIndex="0"
-                        SelectedValuePath="CSGOColor" />
+                        Margin="5"
+                        ItemsSource="{Binding LocationTokens}"
+                        SelectedValue="{Binding LocationToken}" />
                 </StackPanel>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
             <TextBlock
-                x:Name="ResultMessage"
                 Grid.Row="1"
                 Margin="7"
                 Background="#FF232121"

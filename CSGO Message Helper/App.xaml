@@ -1,8 +1,9 @@
-﻿<Application x:Class="CSGO_Message_Helper.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CSGO_Message_Helper"
-             StartupUri="MainWindow.xaml">
+﻿<Application
+    x:Class="CSGO_Message_Helper.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:CSGO_Message_Helper"
+    StartupUri="/Views/MainWindow.xaml">
     <Application.Resources>
         <FontFamily x:Key="Stratum2 Medium">pack://application:,,,/Fonts/#Stratum2 Medium</FontFamily>
         <FontFamily x:Key="Stratum2 Bold">pack://application:,,,/Fonts/#Stratum2 Bold</FontFamily>

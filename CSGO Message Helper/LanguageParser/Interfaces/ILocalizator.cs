@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace CSGO_Message_Helper.Interfaces
 {
-    internal interface ILanguage
+    internal interface ILocalizator
     {
-        string RadioMessage { get; }
-        string Template { get; }
-        string Location { get; }
-
+        string GetLocaleValue(string language, string token);
     }
 }
