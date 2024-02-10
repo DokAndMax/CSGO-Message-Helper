@@ -91,6 +91,7 @@
     <Compile Include="Models\ChatTokens.cs" />
     <Compile Include="Models\GameParams.cs" />
     <Compile Include="LanguageParser\Interfaces\ILocalizator.cs" />
+    <Compile Include="OptionsParser.cs" />
     <Compile Include="OptionsParser\Interfaces\IOptions.cs" />
     <Compile Include="MessageGenetator\Interfaces\IGameParams.cs" />
     <Compile Include="MessageGenetator\Interfaces\IChatTokens.cs" />
@@ -107,7 +108,6 @@
   <ItemGroup>
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="MessageGenetator\MessageGenerator.cs" />
-    <Compile Include="OptionsParser\OptionsParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

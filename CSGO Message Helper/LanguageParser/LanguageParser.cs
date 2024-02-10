@@ -39,10 +39,8 @@ namespace CSGO_Message_Helper
             var languageConfig = VdfConvert.Deserialize(localeFileText);
 
             string result = languageConfig.Value["Tokens"]?[token].ToString();
-            
-            if (result is null)
-                throw new Exception("Token not found");
-            return result;
+
+            return result is null ? throw new Exception("Token not found") : result;
         }
 
         private string GetCSGOPath()
@@ -51,9 +49,7 @@ namespace CSGO_Message_Helper
             RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
             RegistryKey registryKey = hklm.OpenSubKey(registryPath);
 
-            if(registryKey is null)
-                throw new Exception("CSGO is not installed");
-            return registryKey.GetValue("InstallLocation") as string;
+            return registryKey is null ? throw new Exception("CSGO is not installed") : registryKey.GetValue("InstallLocation") as string;
         }
     }
 }

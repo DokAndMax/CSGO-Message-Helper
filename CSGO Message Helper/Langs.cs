@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace CSGO_Message_Helper
 {
     class Langs
     {
-        public string dead { get; set; }
+        public string Dead { get; set; }
         public string TeamT { get; set; }
         public string TeamCT { get; set; }
-        public string radioMessage { get; set; }
-        public string positionT { get; set; }
-        public string positionCT { get; set; }
+        public string RadioMessage { get; set; }
+        public string PositionT { get; set; }
+        public string PositionCT { get; set; }
 
-        public Langs(string dead, string TeamT, string TeamCT, string radioMessage, string positionT, string positionCT)
+        public Langs(string dead, string teamT, string teamCT, string radioMessage, string positionT, string positionCT)
         {
-            this.dead = dead;
-            this.TeamT = TeamT;
-            this.TeamCT = TeamCT;
-            this.radioMessage = radioMessage;
-            this.positionT = positionT;
-            this.positionCT = positionCT;
+            Dead = dead;
+            TeamT = teamT;
+            TeamCT = teamCT;
+            RadioMessage = radioMessage;
+            PositionT = positionT;
+            PositionCT = positionCT;
         }
     }
     public class PlayerColors

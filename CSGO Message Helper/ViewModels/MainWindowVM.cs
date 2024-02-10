@@ -1,10 +1,8 @@
 ﻿using CSGO_Message_Helper.Interfaces;
 using CSGO_Message_Helper.Models;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace CSGO_Message_Helper
 {
@@ -23,7 +21,7 @@ namespace CSGO_Message_Helper
 
         public bool IsDead { get; set; }
 
-        public bool IsLocation { get; set; }
+        public bool IsLocation { get; set; } = true;
 
         public bool IsCounterTerrorists { get; set; }
 
